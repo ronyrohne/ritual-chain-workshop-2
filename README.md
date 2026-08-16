@@ -1,4 +1,37 @@
 # Ritual Predict
+Self-Resolving Binary Prediction Market on Ritual Chain
+
+## Bootcamp Level 2 Assignment
+**Completed by:** [ronyrohne]  
+**Date:** August 16, 2026  
+**Program:** Ritual Academy – Bootcamp Level 2
+
+This repository is a fork of the official workshop code for building a fully autonomous prediction market on Ritual Chain.
+
+### What this project does
+Users can create a market with a clear question (for example “Will ETH be above $4000 at resolution time?”).  
+Participants stake native RITUAL on YES or NO.  
+When the betting window closes, the Ritual Scheduler automatically wakes the contract.  
+The contract then calls the HTTP precompile to fetch external data, uses the jq precompile to extract the relevant number, compares it with the target, and settles the market.  
+Winners can later claim their proportional share of the pool.
+
+### Key features I reviewed
+- Deadlines are based on block numbers instead of timestamps
+- Three automatic retry attempts if the oracle read fails
+- Failed oracle reads result in Invalid status and full refunds
+- Execution fees are prepaid through RitualWallet
+- No hardcoded executors – dynamic selection via TEEServiceRegistry
+- Pull-based payouts to avoid loops and gas issues
+
+### Current status
+Public testnet has already closed.  
+All core logic has been reviewed and the project is prepared for mainnet deployment once Ritual mainnet goes live.
+
+### How to use later
+1. Update RPC and private key in .env
+2. Run the deploy script
+3. Create markets and test the full flow
+# Ritual Predict
 
 A self-resolving binary prediction market on [Ritual Chain](https://docs.ritualfoundation.org).
 
